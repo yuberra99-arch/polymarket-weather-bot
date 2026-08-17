@@ -30,13 +30,34 @@ def main():
     weather = get_weather()
 
     current = weather["current"]
+    hourly = weather["hourly"]
+
+    temperatures = hourly["temperature_2m"]
+    times = hourly["time"]
+
+    max_temperature = max(temperatures)
+    max_index = temperatures.index(max_temperature)
+    max_time = times[max_index]
+
+    min_temperature = min(temperatures)
+    min_index = temperatures.index(min_temperature)
+    min_time = times[min_index]
 
     print()
     print("Current temperature:", current["temperature_2m"], "°C")
     print("Feels like:", current["apparent_temperature"], "°C")
 
     print()
-    print("Hourly forecast loaded:", len(weather["hourly"]["time"]), "hours")
+    print("48-HOUR FORECAST ANALYSIS")
+    print("-------------------------")
+    print("Maximum temperature:", max_temperature, "°C")
+    print("Maximum expected at:", max_time)
+
+    print("Minimum temperature:", min_temperature, "°C")
+    print("Minimum expected at:", min_time)
+
+    print()
+    print("Hourly forecast loaded:", len(temperatures), "hours")
 
 
 if __name__ == "__main__":
